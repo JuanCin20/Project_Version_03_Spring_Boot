@@ -54,6 +54,15 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public List<RoleEntity> findAllRoleEntities() {
+        try {
+            return roleRepository.findAll();
+        } catch (Exception Obj_Exception) {
+            // Handle Exception or log the Error
+            throw new RuntimeException("Error: findAll - " + Obj_Exception.getMessage() + ".");
+        }
+    }
+
     public Optional<UserEntity> findById(Long UserId) {
         try {
             return userRepository.findById(UserId);

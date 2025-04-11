@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.application.Project_Version_03_Spring_Boot.service.UserService;
 import com.application.Project_Version_03_Spring_Boot.component.ConvertUserEntityDto;
+import com.application.Project_Version_03_Spring_Boot.component.ConvertRoleEntityDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +16,8 @@ import org.springframework.http.HttpHeaders;
 import com.application.Project_Version_03_Spring_Boot.entity.UserEntity;
 import java.util.ArrayList;
 import org.springframework.http.HttpStatus;
+import com.application.Project_Version_03_Spring_Boot.dto.RoleDto;
+import com.application.Project_Version_03_Spring_Boot.entity.RoleEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,11 +33,13 @@ public class UserController {
 
     private final UserService userService;
     private final ConvertUserEntityDto convertUserEntityDto;
+    private final ConvertRoleEntityDto convertRoleEntityDto;
 
     @Autowired
-    public UserController(UserService userService, ConvertUserEntityDto convertUserEntityDto) {
+    public UserController(UserService userService, ConvertUserEntityDto convertUserEntityDto, ConvertRoleEntityDto convertRoleEntityDto) {
         this.userService = userService;
         this.convertUserEntityDto = convertUserEntityDto;
+        this.convertRoleEntityDto = convertRoleEntityDto;
     }
 
     @GetMapping(path = "/all")
@@ -52,6 +57,24 @@ public class UserController {
                 userDtos.add(userDto);
             }
             return new ResponseEntity<List<UserDto>>(userDtos, Obj_HttpHeaders, HttpStatus.OK);
+        }
+    }
+
+    @GetMapping(path = "/allRoleEntities")
+    @ResponseBody
+    public ResponseEntity<List<RoleDto>> roles() {
+        HttpHeaders Obj_HttpHeaders = new HttpHeaders();
+        Obj_HttpHeaders.add("headerName", "headerValue");
+        List<RoleEntity> roleEntities = userService.findAllRoleEntities();
+        List<RoleDto> roleDtos = new ArrayList<>();
+        if (roleEntities.isEmpty()) {
+            return new ResponseEntity("NOT_FOUND", Obj_HttpHeaders, HttpStatus.NOT_FOUND);
+        } else {
+            for (int i = 0; i < roleEntities.size(); i++) {
+                RoleDto roleDto = convertRoleEntityDto.convert(roleEntities.get(i));
+                roleDtos.add(roleDto);
+            }
+            return new ResponseEntity<List<RoleDto>>(roleDtos, Obj_HttpHeaders, HttpStatus.OK);
         }
     }
 
