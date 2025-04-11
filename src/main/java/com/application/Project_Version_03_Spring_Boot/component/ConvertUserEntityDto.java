@@ -10,7 +10,7 @@ public class ConvertUserEntityDto implements Converter<UserEntity, UserDto> {
 
     @Override
     public UserDto convert(UserEntity source) {
-        UserDto userDto = new UserDto(source.getUserId(), source.getRoleEntities(), source.getUserDni(), source.getUserEmail(), source.getUserName(), source.getUserLastName(), source.getUserPhone(), source.getUserAddress(), source.getUserBirth(), source.getUserState(), source.getUserRegister(), source.getUserNotAccountExpired(), source.getUserNotAccountBlocked(), source.getUserCredentialNotExpired());
+        UserDto userDto = new UserDto(source.getUserId(), source.getRoleEntities(), source.getUserDni(), source.getUserEmail(), source.getUserPassword(), source.getUserName(), source.getUserLastName(), source.getUserPhone(), source.getUserAddress(), source.getUserBirth(), source.getUserState(), source.getUserRegister(), source.getUserNotAccountExpired(), source.getUserNotAccountBlocked(), source.getUserCredentialNotExpired());
         return userDto;
     }
 }
