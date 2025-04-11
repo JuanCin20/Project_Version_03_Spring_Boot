@@ -8,7 +8,7 @@ import java.util.Set;
 import com.application.Project_Version_03_Spring_Boot.entity.RoleEntity;
 import java.util.HashSet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.application.Project_Version_03_Spring_Boot.entity.UserEntity;
@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import org.springframework.security.core.userdetails.User;
 import java.util.Optional;
 import java.util.Iterator;
+
+import com.application.Project_Version_03_Spring_Boot.encryption.Encryption;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -33,7 +35,7 @@ public class UserService implements UserDetailsService {
         this.roleRepository = roleRepository;
     }
 
-    BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    // BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public UserDetails loadUserByUsername(String UserEmail) throws UsernameNotFoundException {
@@ -87,7 +89,7 @@ public class UserService implements UserDetailsService {
                 }
                 roleEntityIterator.remove();
             }
-            String UserPassword = bCryptPasswordEncoder.encode(userEntity.getUserPassword());
+            String UserPassword = Encryption.encryptUserPassword(userEntity.getUserPassword());
             userEntity.setUserPassword(UserPassword);
             return userRepository.save(userEntity);
         } catch (Exception Obj_Exception) {
@@ -118,7 +120,7 @@ public class UserService implements UserDetailsService {
 
                 userEntity1.setUserDni(userEntity.getUserDni());
                 userEntity1.setUserEmail(userEntity.getUserEmail());
-                userEntity1.setUserPassword(bCryptPasswordEncoder.encode(userEntity.getUserPassword()));
+                userEntity1.setUserPassword(Encryption.encryptUserPassword(userEntity.getUserPassword()));
                 userEntity1.setUserName(userEntity.getUserName());
                 userEntity1.setUserLastName(userEntity.getUserLastName());
                 userEntity1.setUserPhone(userEntity.getUserPhone());
