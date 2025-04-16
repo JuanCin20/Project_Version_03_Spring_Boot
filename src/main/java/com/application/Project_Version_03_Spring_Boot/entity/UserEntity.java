@@ -66,7 +66,7 @@ public class UserEntity {
     @NotEmpty(message = "NotEmpty: UserPassword")
     @NotNull(message = "NotNull: UserPassword")
     @Size(min = 5, max = 100, message = "Size: UserPassword")
-    // @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$")
+    // @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$", message = "Pattern: UserPassword")
     private String UserPassword;
 
     @Column(name = "UserName", length = 50, unique = false, nullable = false)
