@@ -23,7 +23,6 @@ import com.application.Project_Version_03_Spring_Boot.entity.BrandEntity;
 import com.application.Project_Version_03_Spring_Boot.entity.ProductEntity;
 import com.application.Project_Version_03_Spring_Boot.entity.BillEntity;
 import com.application.Project_Version_03_Spring_Boot.entity.BillDetailEntity;
-
 import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
