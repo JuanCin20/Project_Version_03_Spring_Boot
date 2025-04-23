@@ -42,6 +42,10 @@ public class SpringSecurity implements WebMvcConfigurer {
         return httpSecurity.cors(Customizer.withDefaults()).headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin())).csrf(csrfConfigurer -> csrfConfigurer.disable()).httpBasic(Customizer.withDefaults()).sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
             // Configure the Public Endpoints
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/ProjectVersion03SpringBootApplication/Initializer").permitAll();
+            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/Css/**").permitAll();
+            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/Images/**").permitAll();
+            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/Js/**").permitAll();
+            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/ProjectVersion03SpringBootApplication/index").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/user/all").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/user/allRoleEntities").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/user/{UserId}").permitAll();

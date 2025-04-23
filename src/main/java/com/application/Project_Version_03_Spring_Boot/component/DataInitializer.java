@@ -1597,6 +1597,7 @@ public class DataInitializer {
             }
 
             System.out.println("Application Started Successfully, Enter at http://localhost:8080/ProjectVersion03SpringBootApplication/Initializer");
+            System.out.println("Application Started Successfully, Enter at http://localhost:8080/ProjectVersion03SpringBootApplication/index");
             // System.out.println("H2 Started Successfully, Enter at http://localhost:8080/ProjectVersion03SpringBootApplication/H2");
         };
     }
