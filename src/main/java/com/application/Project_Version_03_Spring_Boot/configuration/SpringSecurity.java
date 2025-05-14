@@ -22,15 +22,15 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 // import org.springframework.security.core.userdetails.User;
 // import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 // import org.springframework.http.HttpHeaders;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity // (UserControllerView)
+@EnableMethodSecurity // (TestAuthentication)
 public class SpringSecurity implements WebMvcConfigurer {
 
     @Autowired
@@ -107,8 +107,8 @@ public class SpringSecurity implements WebMvcConfigurer {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // return new BCryptPasswordEncoder();
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
+        // return NoOpPasswordEncoder.getInstance();
     }
 
     /* @Bean
