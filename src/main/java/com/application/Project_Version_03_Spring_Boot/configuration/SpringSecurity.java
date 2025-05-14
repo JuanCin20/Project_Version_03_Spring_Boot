@@ -30,7 +30,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity // (UserControllerView)
 public class SpringSecurity implements WebMvcConfigurer {
 
     @Autowired
@@ -73,21 +73,15 @@ public class SpringSecurity implements WebMvcConfigurer {
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.PUT, "/api/rest/product/update/{ProductId}").hasRole("Developer");
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.DELETE, "/api/rest/product/delete/{ProductId}").hasRole("Developer");
 
-            // authorizationManagerRequestMatcherRegistry.anyRequest().denyAll();
+            authorizationManagerRequestMatcherRegistry.anyRequest().denyAll();
             // Configure the rest of Endpoints - Didn't Specification
-            authorizationManagerRequestMatcherRegistry.anyRequest().authenticated();
+            // authorizationManagerRequestMatcherRegistry.anyRequest().authenticated();
         }).build();
     }
 
     /* @Bean
-    public SecurityFilterChain securityFilterChainAlternative(HttpSecurity httpSecurity) throws Exception {
-
-        // httpSecurity.authorizeHttpRequests((authorizationManagerRequestMatcherRegistry) -> authorizationManagerRequestMatcherRegistry.requestMatchers("/h2/project_version_01/**").permitAll().anyRequest().authenticated());
-        // httpSecurity.headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin()));
-
-        return httpSecurity.headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin())).csrf(csrfConfigurer -> csrfConfigurer.disable()).httpBasic(Customizer.withDefaults()).sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
-            authorizationManagerRequestMatcherRegistry.requestMatchers("/h2/project_version_01/**").permitAll().anyRequest().authenticated();
-        }).build();
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity.cors(Customizer.withDefaults()).headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin())).csrf(csrfConfigurer -> csrfConfigurer.disable()).httpBasic(Customizer.withDefaults()).sessionManagement(sessionManagementConfigurer -> sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
     } */
 
     @Bean
