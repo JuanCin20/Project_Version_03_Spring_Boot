@@ -56,7 +56,7 @@ public class SpringSecurity implements WebMvcConfigurer {
             // Configure the Private Endpoints
             // authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/category/all").hasAnyAuthority("CREATE", "READ");
             // authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/category/all").hasAuthority("CREATE");
-            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/ProjectVersion03SpringBootApplication/H2/**").hasRole("Developer");
+            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/h2-console/**").hasRole("Developer");
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/category/all").hasAnyRole("Developer", "Administrator");
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/category/{CategoryId}").hasRole("Developer");
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.POST, "/api/rest/category/save").hasRole("Developer");

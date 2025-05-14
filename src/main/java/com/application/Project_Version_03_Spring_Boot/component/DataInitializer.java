@@ -79,7 +79,7 @@ public class DataInitializer {
             userRepository.saveAll(List.of(userEntity1, userEntity2, userEntity3, userEntity4)); */
 
             List<UserEntity> userEntities = Arrays.asList(
-                    // new UserEntity(null, Set.of(roleEntity1, roleEntity2), 73216070, "JuanCin080604@gmail.com", Encryption.encryptUserPassword("JU@NCIn080604"), "Juan Carlos", "Aronés Peña", 959748008, "Calle los Milanos 161 Santa Anita", "08/06/2004", true, register, null, true, true, true),
+                    new UserEntity(null, Set.of(roleEntity1, roleEntity2), 73216070, "JuanCin080604@gmail.com", Encryption.encryptUserPassword("JU@NCIn080604"), "Juan Carlos", "Aronés Peña", 959748008, "Calle los Milanos 161 Santa Anita", "08/06/2004", true, register, null, true, true, true),
                     new UserEntity(null, Set.of(roleEntity2), 73216072, "Lola@gmail.com", Encryption.encryptUserPassword("JU@NCIn080604"), "Lola Hernández", "Maria Cervera", 965845403, "Chancay 894", "03/06/2004", true, register, null, true, true, true),
                     new UserEntity(null, Set.of(roleEntity2), 73216073, "Rita@gmail.com", Encryption.encryptUserPassword("JU@NCIn080604"), "Rita Coca", "Tatiana Salguero", 956745696, "Merida 216", "03/06/2004", true, register, null, true, true, true),
                     new UserEntity(null, Set.of(roleEntity2), 73216074, "Vidal@gmail.com", Encryption.encryptUserPassword("JU@NCIn080604"), "Vidal Pavon", "Josue Pedrosa", 956745667, "Santiago de Surco 33", "03/06/2004", true, register, null, true, true, true),
@@ -1598,7 +1598,7 @@ public class DataInitializer {
 
             System.out.println("Application Started Successfully, Enter at http://localhost:8080/ProjectVersion03SpringBootApplication/Initializer");
             System.out.println("Application Started Successfully, Enter at http://localhost:8080/ProjectVersion03SpringBootApplication/index");
-            // System.out.println("H2 Started Successfully, Enter at http://localhost:8080/ProjectVersion03SpringBootApplication/H2");
+            // System.out.println("H2 Started Successfully, Enter at http://localhost:8080/h2-console");
         };
     }
 }

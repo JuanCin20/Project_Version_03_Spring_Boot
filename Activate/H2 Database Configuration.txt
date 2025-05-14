@@ -1,0 +1,22 @@
+# server.port=8070
+spring.application.name=project_version_03_spring_boot
+# DataBase Configuration
+spring.datasource.url=jdbc:h2:file:C:/data/project_version_01
+# spring.datasource.url=jdbc:h2:mem:project_version_01
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=U22208295
+spring.datasource.password=JU@NCIn080604
+# Hibernate DLL Auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.defer-datasource-initialization=true
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.h2.console.settings.trace=false
+spring.h2.console.settings.web-allow-others=false
+spring.jpa.open-in-view=true
+spring.thymeleaf.check-template-location=false
+# Security Configuration (Username by Default: user)
+# spring.security.user.name=U22208295
+# spring.security.user.password=JU@NCIn080604
