@@ -61,8 +61,8 @@
                 <form th:action="@{/api/authentication/sign_up}" th:object="${userEntity}" method="POST"
                       enctype="multipart/form-data"
                       class="p-4 bg-primary-subtle rounded shadow needs-validation" novalidate>
-                    <h2 class="text-center mb-4">Sign Up</h2>
-                    <p class="text-center text-muted mb-4">Enter Your Personal data to Create an Account</p>
+                    <h2 class="text-center mb-4">Sign Up Form</h2>
+                    <p class="text-center text-muted mb-4">Enter Your Personal data to Create an Account.</p>
 
                     <!--Alert-->
                     <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
@@ -234,10 +234,10 @@
                                 <div class="invalid-feedback" th:if="${#fields.hasErrors('UserRegister')}"
                                      th:errors="*{UserRegister}"></div>
                             </div>
-                            <div class="d-flex flex-row justify-content-center gap-2 form-check">
+                            <div class="col-sm-12 form-check">
                                 <input type="checkbox" class="form-check-input" id="termsCheck" required>
                                 <label class="form-check-label" for="termsCheck">I Accept the Terms and
-                                    Conditions</label>
+                                    Conditions.</label>
                                 <div class="invalid-feedback">You Must Accept the Terms and Conditions.</div>
                             </div>
                             <div class="d-flex flex-row justify-content-center">
