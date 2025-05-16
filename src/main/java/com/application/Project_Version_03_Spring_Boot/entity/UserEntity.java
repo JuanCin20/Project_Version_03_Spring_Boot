@@ -25,6 +25,9 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Past;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 import jakarta.persistence.OneToMany;
 import java.util.List;
 import java.util.ArrayList;
@@ -62,9 +65,9 @@ public class UserEntity {
     private String UserEmail;
 
     @Column(name = "UserPassword", length = 150, unique = false, nullable = false)
-    @NotBlank(message = "NotBlank: UserPassword")
-    @NotEmpty(message = "NotEmpty: UserPassword")
-    @NotNull(message = "NotNull: UserPassword")
+    // @NotBlank(message = "NotBlank: UserPassword")
+    // @NotEmpty(message = "NotEmpty: UserPassword")
+    // @NotNull(message = "NotNull: UserPassword")
     @Size(min = 5, max = 100, message = "Size: UserPassword")
     // @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$", message = "Pattern: UserPassword")
     private String UserPassword;
@@ -98,20 +101,26 @@ public class UserEntity {
     @Size(min = 5, max = 50, message = "Size: UserAddress")
     private String UserAddress;
 
-    @Column(name = "UserBirth", length = 10, unique = false, nullable = false)
+    /* @Column(name = "UserBirth", length = 10, unique = false, nullable = false)
     @NotBlank(message = "NotBlank: UserBirth")
     @NotEmpty(message = "NotEmpty: UserBirth")
     @NotNull(message = "NotNull: UserBirth")
     @Size(min = 10, max = 10, message = "Size: UserBirth")
-    private String UserBirth;
+    private String UserBirth; */
+
+    @Column(name = "UserBirth", length = 10, unique = false, nullable = false)
+    @NotNull(message = "NotNull: UserBirth")
+    @Past(message = "Past: UserBirth")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate UserBirth;
 
     @Column(name = "UserState", unique = false, nullable = false)
     private Boolean UserState;
 
     @Column(name = "UserRegister", length = 10, unique = false, nullable = false)
-    @NotBlank(message = "NotBlank: UserRegister")
-    @NotEmpty(message = "NotEmpty: UserRegister")
-    @NotNull(message = "NotNull: UserRegister")
+    // @NotBlank(message = "NotBlank: UserRegister")
+    // @NotEmpty(message = "NotEmpty: UserRegister")
+    // @NotNull(message = "NotNull: UserRegister")
     @Size(min = 10, max = 10, message = "Size: UserRegister")
     private String UserRegister;
 

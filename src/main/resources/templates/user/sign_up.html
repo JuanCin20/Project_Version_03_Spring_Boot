@@ -106,7 +106,7 @@
                                 <div class="invalid-feedback" th:if="${#fields.hasErrors('UserEmail')}"
                                      th:errors="*{UserEmail}"></div>
                             </div>
-                            <div class="col-sm-12">
+                            <!--<div class="col-sm-12">
                                 <label for="UserPassword" class="form-label"
                                 ><i class="fa-solid fa-square-minus"></i>&nbsp;Password:</label
                                 >
@@ -123,7 +123,7 @@
                                 />
                                 <div class="invalid-feedback" th:if="${#fields.hasErrors('UserPassword')}"
                                      th:errors="*{UserPassword}"></div>
-                            </div>
+                            </div>-->
                             <div class="col-sm-6">
                                 <label for="UserName" class="form-label"
                                 ><i class="fa-solid fa-square-minus"></i>&nbsp;Name:</label
@@ -203,7 +203,7 @@
                                 ><i class="fa-solid fa-square-minus"></i>&nbsp;Birth:</label
                                 >
                                 <input
-                                        type="text"
+                                        type="date"
                                         class="form-control"
                                         id="UserBirth"
                                         th:field="*{UserBirth}"
@@ -216,7 +216,7 @@
                                 <div class="invalid-feedback" th:if="${#fields.hasErrors('UserBirth')}"
                                      th:errors="*{UserBirth}"></div>
                             </div>
-                            <div class="col-sm-12">
+                            <!--<div class="col-sm-12">
                                 <label for="UserRegister" class="form-label"
                                 ><i class="fa-solid fa-square-minus"></i>&nbsp;Current Date:</label
                                 >
@@ -233,7 +233,7 @@
                                 />
                                 <div class="invalid-feedback" th:if="${#fields.hasErrors('UserRegister')}"
                                      th:errors="*{UserRegister}"></div>
-                            </div>
+                            </div>-->
                             <div class="col-sm-12 form-check">
                                 <input type="checkbox" class="form-check-input" id="termsCheck" required>
                                 <label class="form-check-label" for="termsCheck">I Accept the Terms and
