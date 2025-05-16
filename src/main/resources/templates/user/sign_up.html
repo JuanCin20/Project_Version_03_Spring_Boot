@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title th:text="${title}">title</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" th:href="@{/Images/Favicon.ico}"/>
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css"/>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous"/>
+    <link th:href="@{/Css/Styles.css}" rel="stylesheet">
+</head>
+<body id="page-top">
+<div xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#page-top"><h2>PC - Factory®</h2></a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                Menu
+                <i class="fas fa-bars ms-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/user/sign_up}">Sign Up</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="!isAuthenticated()">
+                        <a class="nav-link" th:href="@{/user/log_in}">Log In</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <form th:action="@{/api/authentication/logout}" method="POST" style="display: inline;">
+                            <button type="submit" class="nav-link btn btn-link">Log Out</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container-fluid">
+    <section class="py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <form th:action="@{/api/authentication/sign_up}" th:object="${userEntity}" method="POST"
+                      enctype="multipart/form-data"
+                      class="p-4 bg-primary-subtle rounded shadow needs-validation" novalidate>
+                    <h2 class="text-center mb-4">Sign Up</h2>
+                    <p class="text-center text-muted mb-4">Enter Your Personal data to Create an Account</p>
+
+                    <!--Alert-->
+                    <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+                    <div class="form-body">
+                        <div class="row g-2">
+                            <div class="col-sm-12">
+                                <label for="UserDni" class="form-label"><i
+                                        class="fa-solid fa-square-minus"></i>&nbsp;DNI:</label>
+                                <input
+                                        type="number"
+                                        class="form-control"
+                                        id="UserDni"
+                                        th:field="*{UserDni}"
+                                        name="UserDni"
+                                        placeholder="DNI"
+                                        autocomplete="off"
+                                        min="10000000"
+                                        max="99999999"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserDni')}"
+                                     th:errors="*{UserDni}"></div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="UserEmail" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;E-Mail:</label
+                                >
+                                <input
+                                        type="email"
+                                        class="form-control"
+                                        id="UserEmail"
+                                        th:field="*{UserEmail}"
+                                        name="UserEmail"
+                                        placeholder="E-Mail"
+                                        autocomplete="off"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserEmail')}"
+                                     th:errors="*{UserEmail}"></div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="UserPassword" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;Password:</label
+                                >
+                                <input
+                                        type="password"
+                                        class="form-control"
+                                        id="UserPassword"
+                                        th:field="*{UserPassword}"
+                                        name="UserPassword"
+                                        placeholder="Password"
+                                        autocomplete="off"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserPassword')}"
+                                     th:errors="*{UserPassword}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="UserName" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;Name:</label
+                                >
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="UserName"
+                                        th:field="*{UserName}"
+                                        name="UserName"
+                                        placeholder="Name"
+                                        autocomplete="off"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserName')}"
+                                     th:errors="*{UserName}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="UserLastName" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;Last Name:</label
+                                >
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="UserLastName"
+                                        th:field="*{UserLastName}"
+                                        name="UserLastName"
+                                        placeholder="Last Name"
+                                        autocomplete="off"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserLastName')}"
+                                     th:errors="*{UserLastName}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="UserPhone" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;Phone:</label
+                                >
+                                <input
+                                        type="number"
+                                        class="form-control"
+                                        id="UserPhone"
+                                        th:field="*{UserPhone}"
+                                        name="UserPhone"
+                                        placeholder="Phone"
+                                        autocomplete="off"
+                                        min="900000000"
+                                        max="999999999"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserPhone')}"
+                                     th:errors="*{UserPhone}"></div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="UserAddress" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;Address:</label
+                                >
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="UserAddress"
+                                        th:field="*{UserAddress}"
+                                        name="UserAddress"
+                                        placeholder="Address"
+                                        autocomplete="off"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserAddress')}"
+                                     th:errors="*{UserAddress}"></div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="UserBirth" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;Birth:</label
+                                >
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="UserBirth"
+                                        th:field="*{UserBirth}"
+                                        name="UserBirth"
+                                        placeholder="Birth"
+                                        autocomplete="off"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserBirth')}"
+                                     th:errors="*{UserBirth}"></div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="UserRegister" class="form-label"
+                                ><i class="fa-solid fa-square-minus"></i>&nbsp;Current Date:</label
+                                >
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="UserRegister"
+                                        th:field="*{UserRegister}"
+                                        th:value="${userEntity.UserRegister}"
+                                        name="UserRegister"
+                                        autocomplete="off"
+                                        th:errorClass="is-invalid"
+                                        required
+                                />
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('UserRegister')}"
+                                     th:errors="*{UserRegister}"></div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-center gap-2 form-check">
+                                <input type="checkbox" class="form-check-input" id="termsCheck" required>
+                                <label class="form-check-label" for="termsCheck">I Accept the Terms and
+                                    Conditions</label>
+                                <div class="invalid-feedback">You Must Accept the Terms and Conditions.</div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-center">
+                                <button type="submit" class="btn btn-primary">Send Request</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<div xmlns:th="http://www.w3.org/1999/xhtml">
+    <!-- Footer-->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 text-lg-start">
+                    Copyright &copy; PC-Factory 2025
+                </div>
+                <div class="col-lg-4 my-3 my-lg-0">
+                    <a
+                            class="btn btn-dark btn-social mx-2"
+                            href="#!"
+                            aria-label="Twitter"
+                    ><i class="fab fa-twitter"></i
+                    ></a>
+                    <a
+                            class="btn btn-dark btn-social mx-2"
+                            href="#!"
+                            aria-label="Facebook"
+                    ><i class="fab fa-facebook-f"></i
+                    ></a>
+                    <a
+                            class="btn btn-dark btn-social mx-2"
+                            href="#!"
+                            aria-label="LinkedIn"
+                    ><i class="fab fa-linkedin-in"></i
+                    ></a>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a class="link-dark text-decoration-none me-3" href="#!"
+                    >Privacy Policy</a
+                    >
+                    <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+            crossorigin="anonymous"></script>
+    <!-- Core theme JS-->
+    <script>
+        window.addEventListener("DOMContentLoaded", (event) => {
+            // Navbar shrink function
+            var navbarShrink = function () {
+                const navbarCollapsible = document.body.querySelector("#mainNav");
+                if (!navbarCollapsible) {
+                    return;
+                }
+                if (window.scrollY === 0) {
+                    navbarCollapsible.classList.add("bg-dark");
+                    navbarCollapsible.classList.remove("navbar-shrink");
+                } else {
+                    navbarCollapsible.classList.add("navbar-shrink");
+                }
+            };
+
+            // Shrink the navbar
+            navbarShrink();
+
+            // Shrink the navbar when page is scrolled
+            document.addEventListener("scroll", navbarShrink);
+
+            //  Activate Bootstrap scrollspy on the main nav element
+            const mainNav = document.body.querySelector("#mainNav");
+            if (mainNav) {
+                new bootstrap.ScrollSpy(document.body, {
+                    target: "#mainNav",
+                    rootMargin: "0px 0px -40%",
+                });
+            }
+
+            // Collapse responsive navbar when toggler is visible
+            const navbarToggler = document.body.querySelector(".navbar-toggler");
+            const responsiveNavItems = [].slice.call(
+                document.querySelectorAll("#navbarResponsive .nav-link")
+            );
+            responsiveNavItems.map(function (responsiveNavItem) {
+                responsiveNavItem.addEventListener("click", () => {
+                    if (window.getComputedStyle(navbarToggler).display !== "none") {
+                        navbarToggler.click();
+                    }
+                });
+            });
+        });
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+    <!-- <script th:href="@{Js/Scripts.js}"></script>-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</div>
+</body>
+</html>
