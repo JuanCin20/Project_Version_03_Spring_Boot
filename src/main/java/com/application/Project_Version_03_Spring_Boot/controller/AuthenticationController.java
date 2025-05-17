@@ -14,6 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Random;
 import com.application.Project_Version_03_Spring_Boot.component.DataInitializer;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.servlet.ModelAndView;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -80,7 +86,17 @@ public class AuthenticationController {
         return false;
     }
 
-    /**/
+    @PostMapping(path = "/log_in")
+    public String log_in(@RequestParam(value = "UserEmail") String UserEmail, @RequestParam(value = "UserPassword") String UserPassword, Model model) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(UserEmail, UserPassword));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            return "redirect:/ProjectVersion03SpringBootApplication/index";
+        } catch (AuthenticationException authenticationException) {
+            model.addAttribute("error", "<i class='fa-solid fa-triangle-exclamation'></i>&nbsp;<label>Incorrect data, Please Verify your Credentials.</label><button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>");
+            return "Hello World!";
+        }
+    }
 
     @PostMapping(path = "/sign_up")
     public ModelAndView sign_up(@Valid @ModelAttribute(value = "userEntity") UserEntity userEntity, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
@@ -118,7 +134,7 @@ public class AuthenticationController {
                     } else {
                         try {
                             userService.save(userEntity);
-                            redirectAttributes.addFlashAttribute("success", "Registration Successful");
+                            redirectAttributes.addFlashAttribute("success", "<i class=\"fa-solid fa-circle-check\"></i>&nbsp;<label>Registration Successful</label><button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>");
                             return new ModelAndView("redirect:/user/log_in");
                         } catch (Exception Obj_Exception) {
                             modelAndView.addObject("title", "Project_Version_03_Sign_Up");

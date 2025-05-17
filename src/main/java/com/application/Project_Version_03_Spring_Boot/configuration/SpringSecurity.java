@@ -46,8 +46,9 @@ public class SpringSecurity implements WebMvcConfigurer {
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/Images/**").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/Js/**").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/ProjectVersion03SpringBootApplication/index").permitAll();
-            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/user/sign_up").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/user/log_in").permitAll();
+            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/user/sign_up").permitAll();
+            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.POST, "/api/authentication/log_in").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.POST, "/api/authentication/sign_up").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/user/all").permitAll();
             authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.GET, "/api/rest/user/allRoleEntities").permitAll();
