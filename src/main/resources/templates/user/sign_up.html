@@ -31,7 +31,9 @@
                     <p class="text-center text-muted mb-4">Enter Your Personal data to Create an Account.</p>
 
                     <!--Alert-->
-                    <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+                    <div th:if="${error != null}" class="alert alert-danger alert-dismissible fade show" role="alert"
+                         th:utext="${error}">
+                    </div>
 
                     <div class="form-body">
                         <div class="row g-2">
