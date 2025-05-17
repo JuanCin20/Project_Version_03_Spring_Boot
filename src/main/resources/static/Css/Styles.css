@@ -256,7 +256,7 @@ header.masthead .masthead-heading {
   }
 }
 
-#products .products-item {
+#categories .categories-item {
   max-width: 26rem;
 
   margin-left: auto;
@@ -264,7 +264,7 @@ header.masthead .masthead-heading {
   margin-right: auto;
 }
 
-#products .products-item .products-link {
+#categories .categories-item .categories-link {
   position: relative;
 
   display: block;
@@ -272,7 +272,7 @@ header.masthead .masthead-heading {
   margin: 0 auto;
 }
 
-#products .products-item .products-link .products-hover {
+#categories .categories-item .categories-link .categories-hover {
   display: flex;
 
   position: absolute;
@@ -292,21 +292,21 @@ header.masthead .masthead-heading {
   transition: opacity ease-in-out 0.25s;
 }
 
-#products
-  .products-item
-  .products-link
-  .products-hover
-  .products-hover-content {
+#categories
+  .categories-item
+  .categories-link
+  .categories-hover
+  .categories-hover-content {
   font-size: 1.25rem;
 
   color: white;
 }
 
-#products .products-item .products-link:hover .products-hover {
+#categories .categories-item .categories-link:hover .categories-hover {
   opacity: 1;
 }
 
-#products .products-item .products-caption {
+#categories .categories-item .categories-caption {
   padding: 1.5rem;
 
   text-align: center;
@@ -314,7 +314,7 @@ header.masthead .masthead-heading {
   background-color: #fff;
 }
 
-#products .products-item .products-caption .products-caption-heading {
+#categories .categories-item .categories-caption .categories-caption-heading {
   font-size: 1.5rem;
 
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -326,7 +326,7 @@ header.masthead .masthead-heading {
   margin-bottom: 0;
 }
 
-#products .products-item .products-caption .products-caption-subheading {
+#categories .categories-item .categories-caption .categories-caption-subheading {
   font-style: italic;
 
   font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -334,13 +334,13 @@ header.masthead .masthead-heading {
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.products-modal .modal-dialog {
+.categories-modal .modal-dialog {
   margin: 1rem;
 
   max-width: 100vw;
 }
 
-.products-modal .modal-content {
+.categories-modal .modal-content {
   padding-top: 6rem;
 
   padding-bottom: 6rem;
@@ -348,14 +348,14 @@ header.masthead .masthead-heading {
   text-align: center;
 }
 
-.products-modal .modal-content h2,
-.products-modal .modal-content .h2 {
+.categories-modal .modal-content h2,
+.categories-modal .modal-content .h2 {
   font-size: 3rem;
 
   line-height: 3rem;
 }
 
-.products-modal .modal-content p.item-intro {
+.categories-modal .modal-content p.item-intro {
   font-style: italic;
 
   margin-bottom: 2rem;
@@ -365,19 +365,19 @@ header.masthead .masthead-heading {
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.products-modal .modal-content p {
+.categories-modal .modal-content p {
   margin-bottom: 2rem;
 }
 
-.products-modal .modal-content ul.list-inline {
+.categories-modal .modal-content ul.list-inline {
   margin-bottom: 2rem;
 }
 
-.products-modal .modal-content img {
+.categories-modal .modal-content img {
   margin-bottom: 2rem;
 }
 
-.products-modal .close-modal {
+.categories-modal .close-modal {
   position: absolute;
 
   top: 1.5rem;
@@ -393,7 +393,7 @@ header.masthead .masthead-heading {
   background-color: transparent;
 }
 
-.products-modal .close-modal:hover {
+.categories-modal .close-modal:hover {
   opacity: 0.3;
 }
 
@@ -789,4 +789,10 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
 }
